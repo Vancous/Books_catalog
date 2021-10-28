@@ -31,10 +31,10 @@ namespace Books_catalog
             services.AddControllersWithViews();
 
             services.AddMvc();
-
+         
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalog Api", Version = "v1" });
             });
             
         }
@@ -60,7 +60,7 @@ namespace Books_catalog
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("v1/swagger.json", "My catalog api V1");
             });
 
             app.UseEndpoints(endpoints =>
