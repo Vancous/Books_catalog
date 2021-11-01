@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 
 namespace Books_catalog.Controllers
 {
-    public class BookController : Controller
+    public class AutorController : Controller
     {
-        public readonly BookRepository _book;
-        public BookController()
+       
+
+       
+        public AutorController()
         {
-            _book = new BookRepository();
+           
+        }
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View();
         }
 
-        [HttpGet]
-        public async Task< ActionResult> Index()
-        {
-           var book = await _book.GetBooks();
-            return View(book);
-        }
 
         [HttpPost]
-        public ActionResult AddBook()
+        public ActionResult AddAutor()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult EditBook()
+        public ActionResult EditAutor()
         {
             return View();
         }
@@ -36,7 +37,7 @@ namespace Books_catalog.Controllers
         
 
         [HttpDelete]
-        public ActionResult DeleteBook()
+        public ActionResult DeleteAutor()
         {
             return RedirectToAction("Index");
         }

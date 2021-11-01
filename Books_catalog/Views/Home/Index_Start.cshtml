@@ -3,5 +3,28 @@
     ViewData["Title"] = "Index_Start";
 }
 
-<h1>Index_Start</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="wwwroot" href="~bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    @Html.ActionLink("Books", "Index", "Book")
+                </li>
+                <li>
+                    @Html.ActionLink("Autors", "Index", "Book")
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>
+
 
