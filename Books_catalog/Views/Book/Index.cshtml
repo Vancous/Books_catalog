@@ -1,0 +1,53 @@
+﻿@using Books_catalog.Models
+@model List<Book>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Book's List</h1>
+
+<table class="table">
+    <tr>
+    <th>
+        id
+    </th>
+
+
+    <th>
+        Name
+    </th>
+
+
+    <th>
+        Year of issue
+    </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(ModelItem => item.Id)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(ModelItem => item.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+            @Html.DisplayFor(ModelItem => item.Year)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "EditBook", new { })
+
+                @Html.ActionLink("Deteils", "AutorForBook", new { })
+
+                @Html.ActionLink("Delete", "DeleteBook", new { })
+
+            </td>
+        </tr>
+
+    }
+</table>
