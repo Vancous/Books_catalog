@@ -8,7 +8,7 @@ namespace Books_catalog.Models
     public class Book
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime Year { get; set; }
+        public string title { get; set; }
+        public string yer { get; set; }
     }
 }

@@ -8,30 +8,48 @@ namespace Books_catalog
 {
     public class AutorRepositotory
     {
+        ApplicationContext ApplicationContext;
         private static List<Autor> _autors;
-        public AutorRepositotory()
+        public AutorRepositotory(ApplicationContext context)
         {
+            ApplicationContext = context;
             _autors = new List<Autor>();
         }
 
-        public async Task<List<Autor>> GetBooks()
+        public async Task<List<Autor>> GetAutors()
         {
+            _autors = ApplicationContext.Autors.ToList();
             return await Task.Run(() => _autors);
         }
 
-        public async Task<Autor> GetBook(int id)
+        public async Task<Autor> GetAutor(int id)
         {
             return await Task.Run(() => _autors.FirstOrDefault(f => f.Id == id));
         }
-
+        public async Task<List<Book>> GetAutorBook(int id)
+        {
+          List<BookAutor> autor =  ApplicationContext.BA.Where(f => f.autor_id == id).ToList();
+            List<Book> book = new List<Book>();
+            for (int i = 0; i < autor.Count; i++)
+            {
+                var someBook = ApplicationContext.Books.Where(f => f.Id == autor[i].book_id).FirstOrDefault();
+                book.Add(someBook);
+            }
+            return book;
+        }
 
         public async void DeleteAutor(int id)
         {
-           await Task.Run(() => _autors.RemoveAll(f => f.Id == id));
+            var DelitsAutor =  ApplicationContext.Autors.FirstOrDefault(f => f.Id == id);
+            ApplicationContext.Autors.Remove(DelitsAutor);
+            ApplicationContext.SaveChanges();
+           
         }
-        public async Task<Autor> AddBook(Autor autor)
+        public async Task<Autor> AddAutor(Autor autor)
         {
-            _autors.Add(autor);
+            
+           ApplicationContext.Autors.Add(autor);
+            ApplicationContext.SaveChanges();
             return autor;
         }
     }

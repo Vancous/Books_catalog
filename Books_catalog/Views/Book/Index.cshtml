@@ -3,24 +3,43 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    TABLE {
+        width: 300px;
+        border-collapse: collapse;
+    }
 
+    TD, TH {
+        padding: 3px;
+        border: 1px solid black;
+    }
+
+    TH {
+        background: #b0e0e6;
+    }
+</style>
 <h1>Book's List</h1>
+<span style="margin-left:30px">@Html.ActionLink("Information", "InfomOfBook", "Book")</span>
+<span style="margin-left:30px">@Html.ActionLink("Delete", "DeleteBook")</span>
+<span style="margin-left:30px">@Html.ActionLink("Add", "AddBook", new { })</span>
+<span style="margin-left:30px">@Html.ActionLink("AddBookforAutor", "AddAutorForBook", new { })</span>
 
+<br />
 <table class="table">
     <tr>
-    <th>
-        id
-    </th>
+        <th>
+            id
+        </th>
 
 
-    <th>
-        Name
-    </th>
+        <th>
+            Name
+        </th>
 
 
-    <th>
-        Year of issue
-    </th>
+        <th>
+            Year of issue
+        </th>
     </tr>
     @foreach (var item in Model)
     {
@@ -28,24 +47,21 @@
             <td>
                 @Html.DisplayFor(ModelItem => item.Id)
             </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.DisplayFor(ModelItem => item.Name)
-            </td>
-        </tr>
-        <tr>
-            <td>
-            @Html.DisplayFor(ModelItem => item.Year)
-            </td>
+
 
             <td>
-                @Html.ActionLink("Edit", "EditBook", new { })
-
-                @Html.ActionLink("Delete", "DeleteBook", new { })
-
+                @Html.DisplayFor(ModelItem => item.title)
             </td>
+
+
+            <td>
+                @Html.DisplayFor(ModelItem => item.yer)
+            </td>
+
+
         </tr>
+
 
     }
+
 </table>

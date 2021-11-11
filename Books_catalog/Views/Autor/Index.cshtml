@@ -1,7 +1,72 @@
-﻿
+﻿@using Books_catalog.Models
+@model List<Autor>
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    TABLE {
+        width: 300px; 
+        border-collapse: collapse; 
+    }
 
-<h1>Index</h1>
+    TD, TH {
+        padding: 3px; 
+        border: 1px solid black; 
+    }
 
+    TH {
+        background: #b0e0e6; 
+    }
+</style>
+<h1>Book's List</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            id
+        </th>
+
+
+        <th>
+            Name
+        </th>
+
+
+        
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(ModelItem => item.Id)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(ModelItem => item.suname)
+            </td>
+
+
+            
+
+
+        </tr>
+
+
+    }
+    <td>
+        @Html.ActionLink("Book", "BooksSomeAutor", "Autor")
+
+    </td>
+    <td>
+
+        @Html.ActionLink("Delete", "DeleteAutor")
+
+    </td>
+    <td>
+
+        @Html.ActionLink("Add", "AddAutor", new { })
+
+    </td>
+    
+</table>

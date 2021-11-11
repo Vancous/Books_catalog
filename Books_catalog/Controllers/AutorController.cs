@@ -3,29 +3,39 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Books_catalog.Models;
 namespace Books_catalog.Controllers
 {
     public class AutorController : Controller
     {
-       
+        ApplicationContext ApplicationContext;
+        public readonly AutorRepositotory _autor;
 
-       
-        public AutorController()
+
+        public AutorController(ApplicationContext context)
         {
-           
+            ApplicationContext = context;
+            _autor = new AutorRepositotory(ApplicationContext);
         }
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var autor = await _autor.GetAutors();
+            return View(autor);
         }
 
 
-        [HttpPost]
-        public ActionResult AddAutor()
+        /*[HttpPost]*/
+        public ActionResult AddAutor(string surname)
         {
-            return View();
+            if (surname == null)
+            {
+                return View();
+            }
+            Autor autor = new Autor();
+            autor.suname = surname;
+            var result = _autor.AddAutor(autor);
+            return RedirectToAction("Index", "Autor");
         }
 
         [HttpPost]
@@ -34,12 +44,29 @@ namespace Books_catalog.Controllers
             return View();
         }
 
-        
-
-        [HttpDelete]
-        public ActionResult DeleteAutor()
+        public ActionResult BooksSomeAutor(int id_autor)
         {
-            return RedirectToAction("Index");
+            if (id_autor == 0)
+            {
+                List<Autor> autors = ApplicationContext.Autors.ToList();
+                return View(autors);
+            }
+            return RedirectToAction("BookResult","Autor", new { id = id_autor });
+        }
+        public async Task<ActionResult> BookResult(int id)
+        {
+           var autor = await _autor.GetAutorBook(id);
+            return View(autor);
+        }
+       /* [HttpDelete]*/
+        public ActionResult DeleteAutor(int id)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+            _autor.DeleteAutor(id);
+            return RedirectToAction("Index", "Autor");
         }
     }
 }

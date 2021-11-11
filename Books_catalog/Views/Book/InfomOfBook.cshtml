@@ -1,0 +1,22 @@
+﻿@using Books_catalog.Models
+@model List<Book>
+@{
+    ViewData["Title"] = "InfomOfBook";
+}
+
+<h1>InfomOfBook</h1>
+<form method="post">
+    <p>Выберите id книги</p>
+    <select name="book_id" id="book_id">
+
+        @foreach (var item in Model)
+        {
+
+            <option name="@item.Id" id="@item.Id">@Html.DisplayFor(ModelItem => item.Id)</option>
+
+        }
+
+    </select>
+
+    <p><input type="submit" value="Proceed" /></p>
+</form>

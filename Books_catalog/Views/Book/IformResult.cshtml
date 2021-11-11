@@ -1,0 +1,13 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "IformResult";
+}
+
+<h1>IformResult</h1>
+@{
+    var item = Model;
+    <p>Id книги @Html.DisplayFor(ModelItem => item[0])</p>
+    <p>Название книги  @Html.DisplayFor(ModelItem => item[1])</p>
+    <p>Список авторов @Html.DisplayFor(ModelItem => item[2])</p>
+}
+@Html.ActionLink("Вернуться", "Index", "Book")

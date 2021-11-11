@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=LAPTOP-LI4VGJCC\\VER;Database=catalog;Trusted_Connection=True;"
+  }
+
+}

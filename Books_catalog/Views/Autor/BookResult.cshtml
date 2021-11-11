@@ -1,0 +1,59 @@
+﻿@using Books_catalog.Models
+@model List<Book>
+@{
+    ViewData["Title"] = "BookResult";
+}
+
+<h1>Книги выброного автора</h1>
+<style>
+    TABLE {
+        width: 300px; 
+        border-collapse: collapse; 
+    }
+
+    TD, TH {
+        padding: 3px; 
+        border: 1px solid black; 
+    }
+
+    TH {
+        background: #b0e0e6; 
+    }
+</style>
+<table class="table">
+    <tr>
+        
+
+
+        <th>
+            Name
+        </th>
+
+
+        <th>
+            Year of issue
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+          
+
+
+            <td>
+                @Html.DisplayFor(ModelItem => item.title)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(ModelItem => item.yer)
+            </td>
+
+
+        </tr>
+
+
+    }
+
+</table>
+@Html.ActionLink("Вернуться", "Index", "Autor")

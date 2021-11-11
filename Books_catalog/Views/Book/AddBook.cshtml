@@ -1,7 +1,28 @@
-﻿
+﻿@using Books_catalog.Models
+@model List<Autor>
 @{
     ViewData["Title"] = "AddBook";
 }
+<form method="post">
+    <h1>AddBook</h1>
+    <p>Название книги</p>
+    <p><input maxlength="30" size="40" name="title"></p>
+    <p>Год выпуска</p>
+    <input maxlength="4" size="10" name="yer">
+    <p>Id автора</p>
+    <select name="id_autor" id="id_autor">
+        
+            @foreach (var item in Model)
+            {
 
-<h1>AddBook</h1>
+                <option name ="@item.Id" id="@item.Id" >@Html.DisplayFor(ModelItem => item.Id)</option>
+
+            }
+        
+    </select>
+
+   <p><input type="submit" value="Add" /></p> 
+</form>
+
+
 

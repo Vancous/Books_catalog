@@ -19,15 +19,19 @@ namespace Books_catalog
         // This method gets called by the runtime. Use this method to add services to the container.
 
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-
+        public IConfigurationRoot _confstring;
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hosting)
+        {
+            _confstring = new ConfigurationBuilder().SetBasePath(hosting.ContentRootPath).AddJsonFile("dbsettings.json").Build();
+        }
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
            
-            string connection = Configuration.GetConnectionString("DefaultConnection");
+            
             
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(connection));
+                options.UseSqlServer(_confstring.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
 
             services.AddMvc();
